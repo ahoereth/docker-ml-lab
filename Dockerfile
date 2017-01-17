@@ -11,21 +11,21 @@ WORKDIR $HOME
 
 RUN pip install -q --no-cache-dir \
       jupyter \
-      jupyterlab \
       widgetsnbextension \
       matplotlib \
       numpy \
       pandas \
       xlrd \
       mysqlclient
-RUN jupyter serverextension enable --py jupyterlab --sys-prefix \
- && jupyter nbextension enable --py widgetsnbextension --sys-prefix
+#     jupyterlab
+# RUN jupyter serverextension enable --py jupyterlab --sys-prefix
+RUN jupyter nbextension enable --py widgetsnbextension --sys-prefix
 
 RUN ln -s /usr/local/bin/python3 /usr/bin/python3 && \
     ln -s /usr/local/bin/python3.5 /usr/bin/python3.5
 
 EXPOSE 8888
-EXPOSE 8889
+# EXPOSE 8889
 
 ENTRYPOINT ["bash"]
 CMD ["start.sh"]
